@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/modelagem.css' %}">
+    <title>Modelagem</title>
+</head>
+<body>
+    <div class="topo"></div>
+    <header>
+        <div class="logo">
+            <img src="{% static 'img/logo.png' %}" alt="">
+        </div>
+        <div class="menu">
+            <nav>
+                <a class="links" href="{% url 'home' %}">INICIO</a>
+                <a class="links" href="{% url 'modelagem' %}">ALINHAMENTO</a>
+                <a class="links" href="https://www.rcsb.org/" target="_blank">BANCO DE DADOS</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="esquerda">
+            <div class="proteina">
+                <div class="titulo">
+                    <h3>PROTEÍNA ANALISADA: 1BGA</h3>
+                </div>
+                <div class="informacoes">
+                        <li>CLASSIFICAÇÃO: GLICOSIDASE</li>
+                        <li>ORGANISMO(S): PAENIBACILLUS POLYMYXA</li>
+                        <li>ORGANISMO(S):  ESCHERICHA COLI</li>
+                        <li>MUTAÇÕES: NÃO</li>
+                </div>
+                <div class="estrutura">
+                    <h3>ESTRUTURA 3D</h3>
+                    <img src="{% static 'img/proteina2.png' %}" alt="proteina2">
+                </div>
+            </div>
+        </section>
+        <section class="direita">
+            <div class="resultados">
+                <h2>RESULTADOS</h2>
+                <div class="output-box">
+                    {{ output|linebreaks }}
+                </div>
+            </div>
+            <!-- modelagem.html -->
+        <form method="POST" action="{% url 'executar_pipeline' %}">
+            {% csrf_token %}
+            <button type="submit">Executar Script</button>
+        </form>
+        </section>
+    </main>
+    <footer>
+    </footer>
+</body>
+</html>        
